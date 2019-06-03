@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.map(&:created_at)
+    @posts = Post.all
   end
 
   def create
@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def destroy
     Post.destroy(params[:id])
+    redirect_to :posts
   end
 
   private
