@@ -1,0 +1,5 @@
+<h2>New post</h2>
+<%= form_for @post, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+  <%= f.file_field :resource %>
+  <%= f.submit "Create" %>
+<% end %>
