@@ -1,2 +1,4 @@
 <h2>This is a post</h2>
-<%= @posts %>
+<% @posts.map { |post| url_for(post.resource) }.each do |url| %>
+  <%= image_tag(url) %>
+<% end %> %>
