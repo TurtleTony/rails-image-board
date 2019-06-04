@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vincent</title>
+    <title>Ruby ImageBoard</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,10 +9,38 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="bg-dark">
+  <div class="container">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <a class="navbar-brand text-light" href="/">RIB<%= " - " + @title if defined? @title%></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Upload", new_post_path, class: "text-light" %>
+          </li>
+          <% end %>
+      </ul>
+      <ul class="navbar-nav">
+      <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-light" %>
+          </li>
+      <% else %>
+          <li class="nav-item">
+            <%= link_to "Log in",  new_user_session_path, class: "text-light" %>
+          </li>
+      <% end %>
+      </ul>
+    </div>
+  </nav>
   <%= notice %>
   <%= alert %>
-  <div class="container">
   <%= yield %>
   </div>
   </body>
