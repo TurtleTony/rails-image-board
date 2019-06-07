@@ -14,6 +14,10 @@ class PostsController < AuthenticationController
     @post = Post.new
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def destroy
     Post.destroy(params[:id])
     redirect_to :posts
