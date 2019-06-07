@@ -1,8 +1,8 @@
 # Ruby ImageBoard
 
 ## Features
--[x] Implemented
--[ ] Not Implemented
+- [x] Implemented
+- [ ] Not Implemented
 
 ---
 - [x] Thumbnails with links to post (Done: Tristan)
