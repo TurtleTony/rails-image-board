@@ -1,0 +1,15 @@
+<% @title=@user.email %>
+
+<div class="text-light">
+  User: <%= @user.email %>
+  <br>
+  Registered on: <%= @user.created_at %>
+  <br>
+  <%= @posts.count %> Post<%= 's' if @posts.count != 1 %>:
+  <br>
+  <% @posts.reverse_each do |post| %>
+    <%= image_tag(url_for(post.resource), height: 400) %>
+    <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" } if user_signed_in? %>
+    <br>
+  <% end %>
+</div>

@@ -1,7 +1,7 @@
 <% @title="Dashboard" %>
 
-<% @posts.each do |post| %>
-  <%= image_tag(url_for(post.resource)) %>
+<% @posts.reverse_each do |post| %>
+  <%= image_tag(url_for(post.resource), height: 400) %>
   <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" } if user_signed_in? %>
   <br>
 <% end %>
