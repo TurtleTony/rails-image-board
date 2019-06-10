@@ -1,15 +1,11 @@
-<% @title=@user.email %>
+<% @title="User" %>
 
 <div class="text-light">
-  User: <%= @user.email %>
-  <br>
+  <h2>User: <%= @user.email %></h2>
+  <h6>
   Registered on: <%= @user.created_at %>
-  <br>
-  <%= @posts.count %> Post<%= 's' if @posts.count != 1 %>:
-  <br>
-  <% @posts.reverse_each do |post| %>
-    <%= image_tag(url_for(post.resource), height: 400) %>
-    <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" } if user_signed_in? %>
-    <br>
-  <% end %>
+  </h6>
+  <h3><%= @posts.size %> Post<%= 's' if @posts.size != 1 %>:
+  </h3>
+  <%= render "posts/thumbnail_grid" %>
 </div>
