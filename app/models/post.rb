@@ -4,6 +4,18 @@ class Post < ApplicationRecord
 
   validate :resource_format
 
+  def belongs_to_user?(user)
+    user.id == user_id
+  end
+
+  def destroy_if_belongs_to_user(user)
+    if belongs_to_user?(user)
+      destroy
+    else
+      false
+    end
+  end
+
   private
 
   def resource_format
