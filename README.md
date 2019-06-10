@@ -7,7 +7,7 @@
 ---
 - [x] Thumbnails with links to post (Done: Tristan)
 - [x] Scaling/responsive Dashboard (basically a grid of thumbnails) (Done: Tristan)
-- [ ] Post Details Page (adjust when owned post)
+- [ ] Post Details Page (adjust when owned post) (WIP: Tristan)
 - [x] User Profile Page (Basics are done: Vincent)
 - [ ] Up/Down-vote System (WIP: Vincent)
 - [x] Adjust picture size to fit (Done thanks to bootstrap: Tristan)
