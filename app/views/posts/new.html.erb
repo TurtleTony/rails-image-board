@@ -1,4 +1,5 @@
-<h2>New post</h2>
+<% @title="Upload" %>
+
 <%= form_for @post, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
   <%= f.file_field :resource %>
   <%= f.submit "Create" %>

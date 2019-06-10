@@ -17,7 +17,7 @@ class PostsController < AuthenticationController
   def show
     @post = Post.find(params[:id])
     @user = User.find(@post.user_id)
-    @deletable = @user.id == current_user.id
+    @deletable = !current_user.nil? && @user.id == current_user.id
   end
 
   def destroy
