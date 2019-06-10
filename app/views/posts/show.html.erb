@@ -1,6 +1,7 @@
 <% @title="Post" %>
 
-<div class="text-center">
+<div class="text-center position-relative">
   <%= image_tag @post.resource, class: "img-fluid" %>
+  <%= link_to(@post.resource, class: "position-absolute enhance-link p-3") do icon('fas', 'search-plus', class: "fa-2x") end %>
 </div>
 <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} if user_signed_in? %>
