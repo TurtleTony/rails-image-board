@@ -68,6 +68,7 @@ gem 'pundit', '~>2.0.1'
 # View
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.8.1'
 
 # Image processing
 gem 'mini_magick'
