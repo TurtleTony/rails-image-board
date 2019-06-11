@@ -1,6 +1,6 @@
 <div class="container-fluid px-0">
   <div class="row no-gutters ml-n2 mt-n2">
-    <% @posts.reverse_each do |post| %>
+    <% posts.reverse_each do |post| %>
       <div class="col-xs-4 col-sm-3 col-md-2 pl-2 pt-2">
         <a href="/posts/<%= post.id %>">
           <%= image_tag post.resource.variant(combine_options: {thumbnail: "256x256^", gravity: "center", extent: "256x256", strip: true}), class: "img-fluid" %>

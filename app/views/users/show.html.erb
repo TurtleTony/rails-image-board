@@ -7,5 +7,5 @@
   </h6>
   <h3><%= @posts.size %> Post<%= 's' if @posts.size != 1 %>:
   </h3>
-  <%= render "posts/thumbnail_grid" %>
+  <%= render "posts/thumbnail_grid", posts: @posts%>
 </div>
