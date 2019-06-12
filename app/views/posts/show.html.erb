@@ -4,5 +4,5 @@
   <%= image_tag @post.resource, class: "img-fluid" %>
   <%= link_to(@post.resource, class: "position-absolute enhance-link p-3", target: "_blank") do icon('fas', 'search-plus', class: "fa-2x") end %>
 </div>
-<span class="text-light">Posted <%= render 'created_identifier', post: @post %> by <%= render 'users/user_link', user: @user %></span>
+<span class="text-light">Posted <%= render 'created_identifier', post: @post %> by <%= render 'users/user_link', user: @post.user %></span>
 <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} if user_signed_in? if @deletable %>
