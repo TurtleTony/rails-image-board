@@ -3,7 +3,10 @@
     <% comments.each do |comment| %>
       <li>
         <p class="mb-0"><%= comment.message %></p>
-        <span class="text-primary"><%= render 'users/user_link', user: comment.user %></span>
+        <span class="text-primary">
+          <%= render 'users/user_link', user: comment.user %>
+          <%= render 'shared/timestamp', timestamp: comment.created_at %>
+        </span>
         <span onclick="setCommentForm(<%= comment.id %>)">Reply</span>
         <span><%= render 'comments/create', post_id: comment.post.id, comment_id: comment.id %></span>
       </li>
