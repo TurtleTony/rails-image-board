@@ -5,12 +5,22 @@ a.enhance-link {
   right: 0
 }
 
-textarea {
+textarea.new-message {
   height: 2em;
   width: 60%;
   border-width: 1px;
 }
 
-textarea:focus {
+textarea:focus.new-message {
   height: 10em;
+}
+
+textarea.comment-message {
+  height: 10em;
+  width: 60%;
+  border-width: 1px;
+}
+
+.comment-reply {
+  display: none;
 }
