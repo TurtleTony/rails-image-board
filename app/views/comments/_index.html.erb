@@ -1,0 +1,9 @@
+<% if comments.size != 0 %>
+  <ul>
+    <% comments.each do |comment| %>
+      <li><p class="mb-0"><%= comment.message %></p>
+        <span class="text-primary"><%= render 'users/user_link', user: comment.user %></span></li>
+      <%= render 'comments/index', comments: comment.comments %>
+    <% end %>
+  </ul>
+<% end %>
