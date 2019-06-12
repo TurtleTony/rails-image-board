@@ -21,9 +21,7 @@ class PostsController < AuthenticationController
   end
 
   def destroy
-    unless Post.find(params[:id]).destroy_if_belongs_to_user(current_user)
-      flash[:alert] = "You may not delete others' posts"
-    end
+    current_user.posts.find(params[:id]).destroy
     redirect_to :posts
   end
 
