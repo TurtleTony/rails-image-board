@@ -4,3 +4,13 @@
 a.enhance-link {
   right: 0
 }
+
+textarea {
+  height: 2em;
+  width: 60%;
+  border-width: 1px;
+}
+
+textarea:focus {
+  height: 10em;
+}
