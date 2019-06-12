@@ -1,0 +1,6 @@
+<%= form_for :comment, url: {controller: "comments",action: "create"}, html: {class: "nifty_form"} do |f| %>
+  <p><%= f.text_area :message, class: "text-light bg-dark border-light"%></p>
+  <%= f.hidden_field :post_id, value: post_id %>
+  <%= f.hidden_field :comment_id, value: (comment_id = comment_id) # This makes comment_id nil if it isn't set %>
+  <%= f.submit "Create", class: "btn btn-danger"%>
+<% end %>
