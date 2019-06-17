@@ -20,6 +20,7 @@
 - [ ] Badges / Achievements / Ranks for users (Combine ranks with authorization system (pundit))
 - [ ] Enable sort of "playlists" for posts (e.g. user has a list where he saves his favourite posts)
 - [ ] Preferences/Settings for each user (e.g. theme of site)
+- [ ] Pagination for posts (I don't think it's needed for comments)
 
 Something being "done" of course doesn't mean it is finite but rather that the part of the programme already works
 although improvements may be made at a later time
