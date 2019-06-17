@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_one_attached :resource
-  has_many :comments
+  has_many :comments, dependent: :delete_all
   has_many :upvotes
   has_many :downvotes
 
