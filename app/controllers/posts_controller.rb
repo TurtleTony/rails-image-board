@@ -43,6 +43,6 @@ class PostsController < AuthenticationController
   private
 
   def post_params
-    params.require(:post).permit(:resource)
+    params.require(:post).permit(:resource, :tag_list)
   end
 end

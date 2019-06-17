@@ -1,6 +1,13 @@
-<% @title="Upload" %>
+<% @title = "Upload" %>
 
-<%= form_for @post, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
-  <%= f.file_field :resource %>
-  <%= f.submit "Create" %>
+<%= form_for @post, url: {action: "create"}, html: {class: "text-primary"} do |f| %>
+  <div class="form-group">
+    <%= f.label :resource, "Select an image" %>
+    <%= f.file_field :resource, class: "form-control-file" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tag_list, "Enter tags (seperated by ',')" %>
+    <%= f.text_field :tag_list, class: "form-control bg-gray text-light" %>
+  </div>
+  <%= f.submit "Create", class: "btn btn-danger" %>
 <% end %>

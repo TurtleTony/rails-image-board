@@ -4,8 +4,10 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :delete_all
   has_many :upvotes
   has_many :downvotes
+  acts_as_taggable
 
   validate :resource_format
+  validates :tag_list, presence: true
 
   def calculate_upvotes
     @total_votes = 0
