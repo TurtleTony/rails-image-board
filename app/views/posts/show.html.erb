@@ -13,7 +13,7 @@
 <div class="mt-3 text-light">
   <h4><%= @post.comments.size %> Comments</h4>
 
-  <%= render 'comments/create', post_id: @post.id %>
+  <%= render 'comments/new', post_id: @post.id %>
   <div class="mt-3">
   <%= render 'comments/index', comments: @post.comments.where(comment_id: nil) %>
   </div>

@@ -1,7 +1,7 @@
 <% comment_id = comment_id # This sets comment_id to nil if it's undefined %>
 <%= form_for :comment, url: {controller: "comments", action: "create"},
              html: {id: "comment_message" + comment_id.to_s, class: "#{'comment-reply' unless comment_id.nil?}"} do |f| %>
-  <p><%= f.text_area :message, required: true, class: "text-light bg-dark border-light " + (comment_id.nil? ? "new-message" : "comment-message") %></p>
+  <p><%= f.text_area :message, required: true, class: "text-light bg-gray border-light " + (comment_id.nil? ? "new-message" : "comment-message") %></p>
   <%= f.hidden_field :post_id, value: post_id %>
   <%= f.hidden_field :comment_id, value: comment_id %>
   <%= f.submit "Create", class: "btn btn-danger" %>
