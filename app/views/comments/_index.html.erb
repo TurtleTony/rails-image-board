@@ -7,7 +7,7 @@
           <%= render 'users/user_link', user: comment.user %>
           <%= render 'shared/timestamp', timestamp: comment.created_at %>
         </span>
-        <span onclick="setCommentForm(<%= comment.id %>)">Reply</span>
+        <span class="pointer" onclick="setCommentForm(<%= comment.id %>)">Reply</span>
         <span><%= render 'comments/create', post_id: comment.post.id, comment_id: comment.id %></span>
       </li>
       <%= render 'comments/index', comments: comment.comments %>
