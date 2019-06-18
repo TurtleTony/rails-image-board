@@ -1,1 +1,14 @@
+$theme-colors: (
+        "black": #0e0f10,
+        "dark": #232327,
+        "gray": #323339,
+        "danger": #F26968,
+        "light": #DFE2D2,
+        "secondary": #F2AD9F,
+        "primary": #6CBF84
+);
+
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "*";

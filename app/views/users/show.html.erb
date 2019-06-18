@@ -1,0 +1,11 @@
+<% @title="User" %>
+
+<div class="text-light">
+  <h2>User: <%= @user.email %></h2>
+  <h6>
+  Registered on: <%= @user.created_at %>
+  </h6>
+  <h3><%= @posts.size %> Post<%= 's' if @posts.size != 1 %>:
+  </h3>
+  <%= render "posts/thumbnail_grid", posts: @posts%>
+</div>

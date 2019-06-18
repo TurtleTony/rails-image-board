@@ -1,0 +1,16 @@
+<% if comments.size != 0 %>
+  <ul>
+    <% comments.each do |comment| %>
+      <li>
+        <p class="mb-0"><%= comment.message %></p>
+        <span class="text-primary">
+          <%= render 'users/user_link', user: comment.user %>
+          <%= render 'shared/timestamp', timestamp: comment.created_at %>
+        </span>
+        <span class="pointer" onclick="setCommentForm(<%= comment.id %>)">Reply</span>
+        <span><%= render 'comments/new', post_id: comment.post.id, comment_id: comment.id %></span>
+      </li>
+      <%= render 'comments/index', comments: comment.comments %>
+    <% end %>
+  </ul>
+<% end %>
