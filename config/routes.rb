@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   resources :posts
   devise_for :users
+  post 'posts/:id/add_tag' => 'posts#add_tag'
   get 'users/:id' => 'users#show', as: 'userid'
   put 'posts/upvote/:id' => 'posts#upvote', as: 'upvote'
   put 'posts/downvote/:id' => 'posts#downvote', as: 'downvote'

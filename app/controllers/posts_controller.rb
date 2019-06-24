@@ -40,6 +40,13 @@ class PostsController < AuthenticationController
     render json: { votes: Post.find(params[:id]).calculate_upvotes, post: params[:id] }
   end
 
+  def add_tag
+    @post = Post.find(params[:id])
+    @post.tag_list.add(params[:tag_list][:tag_list])
+    @post.save
+    redirect_to :action => :show, :id => @post.id
+  end
+
   private
 
   def post_params
