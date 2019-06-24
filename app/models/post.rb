@@ -23,6 +23,10 @@ class Post < ApplicationRecord
     Post.where("posts.id < ?", self.id).order("posts.id DESC").limit(1)[0]
   end
 
+  def self.filtered(filter)
+    Post.where("posts.filter <= ?", filters[filter])
+  end
+
   private
 
   def resource_format

@@ -2,7 +2,8 @@ class PostsController < AuthenticationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @posts = Post.all
+    filter = params[:filter] || :open
+    @posts = Post.filtered(filter)
   end
 
   def create
@@ -29,7 +30,7 @@ class PostsController < AuthenticationController
     current_user.downvotes.where(post_id: params[:id]).destroy_all
     vote = Upvote.new(:user_id => current_user.id, :post_id => params[:id])
     vote.save
-    render json: { votes: Post.find(params[:id]).calculate_upvotes, post: params[:id] }
+    render json: {votes: Post.find(params[:id]).calculate_upvotes, post: params[:id]}
   end
 
   def downvote
@@ -37,7 +38,7 @@ class PostsController < AuthenticationController
     current_user.downvotes.where(post_id: params[:id]).destroy_all
     vote = Downvote.new(:user_id => current_user.id, :post_id => params[:id])
     vote.save
-    render json: { votes: Post.find(params[:id]).calculate_upvotes, post: params[:id] }
+    render json: {votes: Post.find(params[:id]).calculate_upvotes, post: params[:id]}
   end
 
   def add_tag
@@ -49,25 +50,23 @@ class PostsController < AuthenticationController
 
   def next
     @post = Post.find(params[:id])
-    next_post = @post.next
-    if next_post.nil?
-      redirect_to :action => :show, :id => @post.id
-    else
-      redirect_to :action => :show, :id => next_post.id
-    end
+    redirect_to_post(@post.next, @post)
   end
 
   def prev
     @post = Post.find(params[:id])
-    prev_post = @post.prev
-    if prev_post.nil?
-      redirect_to :action => :show, :id => @post.id
-    else
-      redirect_to :action => :show, :id => prev_post.id
-    end
+    redirect_to_post(@post.prev, @post)
   end
 
   private
+
+  def redirect_to_post(post, default)
+    if post.nil?
+      redirect_to :action => :show, :id => default.id
+    else
+      redirect_to :action => :show, :id => post.id
+    end
+  end
 
   def post_params
     params.require(:post).permit(:resource, :tag_list, :filter)
