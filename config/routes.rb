@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :posts
   devise_for :users
   post 'posts/:id/add_tag' => 'posts#add_tag'
+  get 'posts/:id/prev' => 'posts#prev'
+  get 'posts/:id/next' => 'posts#next'
   get 'users/:id' => 'users#show', as: 'userid'
   put 'posts/upvote/:id' => 'posts#upvote', as: 'upvote'
   put 'posts/downvote/:id' => 'posts#downvote', as: 'downvote'

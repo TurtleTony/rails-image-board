@@ -10,3 +10,18 @@
   else
     $(comment_id).show()
   $(comment_id + " > p > textarea").focus()
+
+nextPost = () ->
+  window.location.href += '/next'
+
+prevPost = () ->
+  window.location.href += '/prev'
+
+$(document).on("keydown", (e) ->
+  e = e || window.event
+  console.log(e.which)
+  switch e.which
+    when 39, 68 then prevPost() # Right
+    when 37, 65 then nextPost() # Left
+)
+

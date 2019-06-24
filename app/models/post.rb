@@ -27,6 +27,14 @@ class Post < ApplicationRecord
     @total_votes
   end
 
+  def next
+    Post.where("posts.id > ?", self.id).order("posts.id ASC").limit(1)[0]
+  end
+
+  def prev
+    Post.where("posts.id < ?", self.id).order("posts.id DESC").limit(1)[0]
+  end
+
   private
 
   def resource_format

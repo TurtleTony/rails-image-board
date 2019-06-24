@@ -47,6 +47,26 @@ class PostsController < AuthenticationController
     redirect_to :action => :show, :id => @post.id
   end
 
+  def next
+    @post = Post.find(params[:id])
+    next_post = @post.next
+    if next_post.nil?
+      redirect_to :action => :show, :id => @post.id
+    else
+      redirect_to :action => :show, :id => next_post.id
+    end
+  end
+
+  def prev
+    @post = Post.find(params[:id])
+    prev_post = @post.prev
+    if prev_post.nil?
+      redirect_to :action => :show, :id => @post.id
+    else
+      redirect_to :action => :show, :id => prev_post.id
+    end
+  end
+
   private
 
   def post_params
