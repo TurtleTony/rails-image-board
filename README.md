@@ -15,7 +15,7 @@
 - [ ] Post-Processing of images? (Not sure if we need this)
 - [ ] Video-Support (not sure how big of a task but would be nice to have)
 - [ ] Postfilters (e.g. public, visible for registered user, visible for admins..)
-- [ ] Tagsystem (WIP: Tristan)
+- [x] Tagsystem (Done: Tristan) (Maybe we make tags voteable?)
 - [ ] Searching for tags etc.
 - [ ] Badges / Achievements / Ranks for users (Combine ranks with authorization system (pundit))
 - [ ] Enable sort of "playlists" for posts (e.g. user has a list where he saves his favourite posts)
