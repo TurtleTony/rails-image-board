@@ -14,7 +14,7 @@
 - [x] Adjust picture size to fit (Done thanks to bootstrap: Tristan)
 - [ ] Post-Processing of images? (Not sure if we need this)
 - [ ] Video-Support (not sure how big of a task but would be nice to have)
-- [ ] Postfilters (e.g. public, visible for registered user, visible for admins..)
+- [ ] Postfilters (e.g. public, visible for registered user, visible for admins..) (WIP: Tristan) (maybe force a visibility tag?)
 - [x] Tagsystem (Done: Tristan) (Maybe we make tags voteable?)
 - [ ] Searching for tags etc.
 - [ ] Badges / Achievements / Ranks for users (Combine ranks with authorization system (pundit))
