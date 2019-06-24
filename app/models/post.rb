@@ -1,30 +1,17 @@
 class Post < ApplicationRecord
+  include VoteableConcern
   belongs_to :user
   has_one_attached :resource
+  has_many :comments
+  has_many :votes, as: :voteable
   has_many :comments, dependent: :delete_all
-  has_many :upvotes
-  has_many :downvotes
   acts_as_taggable
 
   validate :resource_format
   validates :tag_list, presence: true
 
   def calculate_upvotes
-    @total_votes = 0
-
-    Upvote.all.each do |vote|
-      if vote.post_id == self.id
-        @total_votes += 1
-      end
-    end
-
-    Downvote.all.each do |vote|
-      if vote.post_id == self.id
-        @total_votes -= 1
-      end
-    end
-
-    @total_votes
+    self.votes.sum :value
   end
 
   def next

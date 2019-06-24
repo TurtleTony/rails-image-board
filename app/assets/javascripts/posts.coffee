@@ -11,6 +11,24 @@
     $(comment_id).show()
   $(comment_id + " > p > textarea").focus()
 
+@vote = (up, post_id) ->
+  url = Routes.post_votes_path(post_id)
+  data = {
+    post_id: post_id,
+    vote: up
+  }
+  $.ajax({
+    type: "POST",
+    url: url,
+    beforeSend: (xhr) ->
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      return
+    ,
+    data: data,
+    success: (data) ->
+      $('#votes'+data.post).html(data.votes)
+      return
+  })
 $(document).on("keydown", (e) ->
   e = e || window.event
   console.log(e.which)

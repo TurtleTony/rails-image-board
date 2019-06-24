@@ -73,5 +73,8 @@ gem 'font-awesome-sass', '~> 5.8.1'
 # Image processing
 gem 'mini_magick'
 
+# JavaScript
+gem "js-routes"
+
 # Tagging
 gem 'acts-as-taggable-on', '~> 6.0'
