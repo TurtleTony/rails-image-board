@@ -6,9 +6,10 @@ class Post < ApplicationRecord
   has_many :votes, as: :voteable
   has_many :comments, dependent: :delete_all
   acts_as_taggable
+  enum filter: [ :open, :internal, :anything ]
 
   validate :resource_format
-  validates :tag_list, presence: true
+  validates :filter, presence: true
 
   def calculate_upvotes
     self.votes.sum :value
