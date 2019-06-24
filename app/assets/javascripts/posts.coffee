@@ -11,12 +11,6 @@
     $(comment_id).show()
   $(comment_id + " > p > textarea").focus()
 
-nextPost = () ->
-  window.location.href += '/next'
-
-prevPost = () ->
-  window.location.href += '/prev'
-
 $(document).on("keydown", (e) ->
   e = e || window.event
   console.log(e.which)
@@ -25,3 +19,12 @@ $(document).on("keydown", (e) ->
     when 37, 65 then nextPost() # Left
 )
 
+navigatePost = (path) ->
+  if (window.location.href.indexOf("/posts/") > -1)
+    window.location.href += path
+
+nextPost = () ->
+  navigatePost('/next')
+
+prevPost = () ->
+  navigatePost('/prev')
