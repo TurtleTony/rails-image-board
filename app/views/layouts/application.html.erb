@@ -22,19 +22,27 @@
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Upload", new_post_path, class: "text-light" %>
+            <%= link_to "Upload", new_post_path, class: "nav-link text-light" %>
           </li>
+          <%= link_to "Filters:", faq_path(anchor: 'filters'), class: "nav-link text-light" %>
+          <% post_filters.each do |filter| %>
+            <li class="nav-item">
+            <%= link_to filter[0].capitalize, posts_filter_path(:filter => filter[0]), method: :post, class: "nav-link " + (@filter == filter[0] ? "text-light" : "text-gray") %>
+            </li>
           <% end %>
+        <% end %>
       </ul>
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= render "users/user_link", user: current_user %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-light" %>
+            <%= render "users/user_nav_link", user: current_user %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-light" %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Log in", new_user_session_path, class: "text-light" %>
+            <%= link_to "Log in", new_user_session_path, class: "nav-link text-light" %>
           </li>
         <% end %>
       </ul>
