@@ -1,5 +1,5 @@
 class PostsController < AuthenticationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :next, :prev]
 
   def index
     filter = params[:filter] || :open
