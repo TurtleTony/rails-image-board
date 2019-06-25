@@ -1,9 +1,10 @@
 class PostsController < AuthenticationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :next, :prev]
+  skip_before_action :authenticate_user!, only: [:index, :show, :next, :prev, :filter]
 
   def index
-    filter = params[:filter] || :open
-    @posts = Post.filtered(filter)
+    filter = session[:filter] || (session[:filter] = :sfw)
+    @filter = filter.to_s
+    @posts = Post.filtered(filter.to_sym)
   end
 
   def create
@@ -39,6 +40,11 @@ class PostsController < AuthenticationController
     vote = Downvote.new(:user_id => current_user.id, :post_id => params[:id])
     vote.save
     render json: {votes: Post.find(params[:id]).calculate_upvotes, post: params[:id]}
+  end
+
+  def filter
+    session[:filter] = params[:filter]
+    redirect_to :posts
   end
 
   def add_tag
