@@ -2,9 +2,7 @@ class PostsController < AuthenticationController
   skip_before_action :authenticate_user!, only: [:index, :show, :next, :prev, :filter]
 
   def index
-    filter = session[:filter] || (session[:filter] = :sfw)
-    @filter = filter.to_s
-    @posts = Post.filtered(filter.to_sym)
+    @posts = Post.filtered(@filter)
   end
 
   def create
@@ -17,7 +15,7 @@ class PostsController < AuthenticationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.filtered(@filter).find(params[:id])
     @deletable = !current_user.nil? && @post.user.id == current_user.id
   end
 
@@ -43,14 +41,14 @@ class PostsController < AuthenticationController
   end
 
   def filter
-    filter = params[:filter]
-    unless current_user || filter.to_sym == :sfw
+    filter = params[:filter].to_sym
+    unless current_user || filter == :sfw
       flash[:alert] = "You need to log in to see these filters"
       redirect_to :new_user_session
       return
     end
-    session[:filter] = :sfw
-    redirect_to :posts
+    session[:filter] = filter
+    redirect_back(fallback_location: :posts)
   end
 
   def add_tag
