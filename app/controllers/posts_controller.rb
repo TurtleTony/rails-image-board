@@ -43,7 +43,13 @@ class PostsController < AuthenticationController
   end
 
   def filter
-    session[:filter] = params[:filter]
+    filter = params[:filter]
+    unless current_user || filter.to_sym == :sfw
+      flash[:alert] = "You need to log in to see these filters"
+      redirect_to :new_user_session
+      return
+    end
+    session[:filter] = :sfw
     redirect_to :posts
   end
 

@@ -24,12 +24,12 @@
           <li class="nav-item">
             <%= link_to "Upload", new_post_path, class: "nav-link text-light" %>
           </li>
-          <%= link_to "Filters:", faq_path(anchor: 'filters'), class: "nav-link text-light" %>
-          <% post_filters.each do |filter| %>
-            <li class="nav-item">
+        <% end %>
+        <%= link_to "Filters:", faq_path(anchor: 'filters'), class: "nav-link text-light" %>
+        <% post_filters.each do |filter| %>
+          <li class="nav-item">
             <%= link_to filter[0].capitalize, posts_filter_path(:filter => filter[0]), method: :post, class: "nav-link " + (@filter == filter[0] ? "text-light" : "text-gray") %>
-            </li>
-          <% end %>
+          </li>
         <% end %>
       </ul>
       <ul class="navbar-nav">
