@@ -60,12 +60,12 @@ class PostsController < AuthenticationController
 
   def next
     @post = Post.find(params[:id])
-    redirect_to_post(@post.next, @post)
+    redirect_to_post(@post.next(@filter), @post)
   end
 
   def prev
     @post = Post.find(params[:id])
-    redirect_to_post(@post.prev, @post)
+    redirect_to_post(@post.prev(@filter), @post)
   end
 
   private

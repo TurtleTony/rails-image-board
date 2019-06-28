@@ -15,12 +15,12 @@ class Post < ApplicationRecord
     self.votes.sum :value
   end
 
-  def next
-    Post.where("posts.id > ?", self.id).order("posts.id ASC").limit(1)[0]
+  def next(filter)
+    Post.filtered(filter).where("posts.id > ?", self.id).order("posts.id ASC").limit(1)[0]
   end
 
-  def prev
-    Post.where("posts.id < ?", self.id).order("posts.id DESC").limit(1)[0]
+  def prev(filter)
+    Post.filtered(filter).where("posts.id < ?", self.id).order("posts.id DESC").limit(1)[0]
   end
 
   def self.filtered(filter)
