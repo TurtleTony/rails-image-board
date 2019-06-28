@@ -1,6 +1,9 @@
 <% @title="Post" %>
 <%= csrf_meta_tag %>
 
+<%= javascript_tag do %>
+    post_id = <%= @post.id %>
+<% end %>
 <div class="text-center position-relative">
   <%= image_tag @post.resource, class: "img-fluid" %>
   <%= link_to(@post.resource, class: "position-absolute enhance-link p-3", target: "_blank") do icon('fas', 'search-plus', class: "fa-2x") end %>

@@ -26,23 +26,17 @@
     ,
     data: data,
     success: (data) ->
-      $('#votes'+data.post).html(data.votes)
+      $('#votes' + data.post).html(data.votes)
       return
   })
 $(document).on("keydown", (e) ->
   e = e || window.event
-  console.log(e.which)
-  switch e.which
-    when 39, 68 then prevPost() # Right
-    when 37, 65 then nextPost() # Left
+  if (!$("input").add("textarea").is(":focus")) # Don't do global hotkeys when in input or textarea
+    switch e.which
+      when 39, 68 then navigatePost('/prev') # Right
+      when 37, 65 then navigatePost('/next') # Left
 )
 
 navigatePost = (path) ->
-  if (window.location.href.indexOf("/posts/") > -1)
-    window.location.href += path
-
-nextPost = () ->
-  navigatePost('/next')
-
-prevPost = () ->
-  navigatePost('/prev')
+  if (post_id? && Routes.post_path(post_id) == window.location.pathname)
+    window.location.href = Routes.post_path(post_id) + path
