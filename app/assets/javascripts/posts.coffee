@@ -26,7 +26,9 @@
     ,
     data: data,
     success: (data) ->
-      $('#votes' + data.post).html(data.votes)
+      $('#votes'+data.post).html(data.votes)
+      $('#upvoteicon').css("color", if data.vote == 1 then "orange" else "")
+      $('#downvoteicon').css("color", if data.vote == -1 then "orange" else "")
       return
   })
 $(document).on("keydown", (e) ->
@@ -35,6 +37,9 @@ $(document).on("keydown", (e) ->
     switch e.which
       when 39, 68 then navigatePost('/prev') # Right
       when 37, 65 then navigatePost('/next') # Left
+      # Vote system not using arrow keys because they are already used for navigation
+      when 87 then vote(true, post_id) # Up
+      when 83 then vote(false, post_id) # Down
 )
 
 navigatePost = (path) ->
