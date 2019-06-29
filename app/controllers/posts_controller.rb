@@ -24,22 +24,6 @@ class PostsController < AuthenticationController
     redirect_to :posts
   end
 
-  def upvote
-    current_user.upvotes.where(post_id: params[:id]).destroy_all
-    current_user.downvotes.where(post_id: params[:id]).destroy_all
-    vote = Upvote.new(:user_id => current_user.id, :post_id => params[:id])
-    vote.save
-    render json: {votes: Post.find(params[:id]).calculate_upvotes, post: params[:id]}
-  end
-
-  def downvote
-    current_user.upvotes.where(post_id: params[:id]).destroy_all
-    current_user.downvotes.where(post_id: params[:id]).destroy_all
-    vote = Downvote.new(:user_id => current_user.id, :post_id => params[:id])
-    vote.save
-    render json: {votes: Post.find(params[:id]).calculate_upvotes, post: params[:id]}
-  end
-
   def filter
     filter = params[:filter].to_sym
     unless current_user || filter == :sfw
