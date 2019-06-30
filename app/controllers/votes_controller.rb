@@ -12,12 +12,4 @@ class VotesController < AuthenticationController
     render json: { votes: @post.calculate_upvotes, post: params[:post_id], vote: vote_state }
   end
 
-  # def self.hasVoted(voted_on_id, voter_id)
-  #   Vote.find(voteable_id: voted_on_id, user_id: voter_id)
-  # end
-
-
-  def destroy
-    Post.all.find(params[:id]).destroy
-  end
 end
