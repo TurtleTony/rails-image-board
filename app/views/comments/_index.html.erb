@@ -5,14 +5,16 @@
         <p class="mb-0"><%= comment.message %></p>
         <span class="text-primary">
           <%= if comment.user_id == post.user_id
-               icon('fas', 'user-tie', class: 'text-danger', title: "OP")
-            end
+                icon('fas', 'user-tie', class: 'text-danger', title: "OP")
+              end
           %>
           <%= render 'users/user_link', user: comment.user %>
           <%= render 'shared/timestamp', timestamp: comment.created_at %>
         </span>
-        <span class="pointer" onclick="setCommentForm(<%= comment.id %>)">Reply</span>
-        <span><%= render 'comments/new', post_id: comment.post.id, comment_id: comment.id %></span>
+        <% if user_signed_in? %>
+          <span class="pointer" onclick="setCommentForm(<%= comment.id %>)">Reply</span>
+          <span><%= render 'comments/new', post_id: comment.post.id, comment_id: comment.id %></span>
+        <% end %>
       </li>
       <%= render 'comments/index', comments: comment.comments, post: post %>
     <% end %>
