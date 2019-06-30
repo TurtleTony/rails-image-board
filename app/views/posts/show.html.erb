@@ -15,16 +15,16 @@
   <span class="col-3" style="font-size: 2.5rem; line-height: 1.2">
     <span>
     <% if user_signed_in? %>
-      <% has_voted = Vote.hasVoted?(@post.id, current_user.id) %>
-      <span class="" style=""><%= link_to("#", onclick: "vote(true," + @post.id.to_s + ")", class: "upvote", id: "upvote"+@post.id.to_s, data: { turbolinks: false }, remote: true ) do %><%= icon('fas', 'caret-square-up', class: "fa-1x", id: "upvoteicon", style: has_voted == 1 ? "color: orange" : "") %><% end %></span>
+      <% has_voted = Vote.voted_on_by(@post.id, current_user.id) %>
+      <span class="" style=""><%= link_to("#", onclick: "vote(true," + @post.id.to_s + ")", class: "upvote", id: "upvote"+@post.id.to_s, data: { turbolinks: false }, remote: true ) do %><%= icon('fas', 'caret-square-up', class: "fa-1x " + (has_voted == 1 ? "text-warning" : ""), id: "upvoteicon") %><% end %></span>
     <% end %>
     <span class="position-absolute" style="top: .5em; left: 1.5em; right: 0; bottom: 0">
       <%= content_tag(:div, content_tag(:div, @post.calculate_upvotes, id: "votes" + @post.id.to_s), id: "vote") %>
     </span>
       <br>
     <% if user_signed_in? %>
-      <% has_voted = Vote.hasVoted?(@post.id, current_user.id) %>
-      <span class=""><%= link_to("#", onclick: "vote(false," + @post.id.to_s + ")", class: "downvote", id: "downvote"+@post.id.to_s, data: { turbolinks: false }, remote: true ) do %><%= icon('fas', 'caret-square-down', class: "fa-1x", id: "downvoteicon", style: has_voted == -1 ? "color: orange" : "") %><% end %></span>
+      <% has_voted = Vote.voted_on_by(@post.id, current_user.id) %>
+      <span class=""><%= link_to("#", onclick: "vote(false," + @post.id.to_s + ")", class: "downvote", id: "downvote"+@post.id.to_s, data: { turbolinks: false }, remote: true ) do %><%= icon('fas', 'caret-square-down', class: "fa-1x " + (has_voted == -1 ? "text-warning" : ""), id: "downvoteicon") %><% end %></span>
     <% end %>
   </span>
   </span>

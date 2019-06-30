@@ -8,7 +8,7 @@ class VotesController < AuthenticationController
       vote = Vote.new(user: current_user, voteable: @post, value: new_vote)
       vote.save
     end
-    vote_state = Vote.hasVoted?(params[:post_id], current_user.id)
+    vote_state = Vote.voted_on_by(params[:post_id], current_user.id)
     render json: { votes: @post.calculate_upvotes, post: params[:post_id], vote: vote_state }
   end
 
