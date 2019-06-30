@@ -17,6 +17,7 @@
     ,
     data: data,
     success: (data) ->
+      console.log(data)
       $('#post_votes').html(data.votes)
 
       post_upvote = $('#post_upvote')
@@ -29,5 +30,34 @@
         post_upvote.addClass("text-warning")
       if (data.vote == -1)
         post_downvote.addClass("text-warning")
+      return
+  })
 
+@comment_vote = (vote, comment_id) ->
+  url = Routes.comment_vote_path(comment_id)
+  data = {
+    comment_id: comment_id,
+    vote: vote
+  }
+  $.ajax({
+    type: "POST",
+    url: url,
+    beforeSend: (xhr) ->
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      return
+    ,
+    data: data,
+    success: (data) ->
+      $("#comment_#{data.voteable_id}_votes").html(data.votes);
+      comment_upvote = $("#comment_#{data.voteable_id}_upvote")
+      comment_downvote = $("#comment_#{data.voteable_id}_downvote")
+
+      comment_upvote.removeClass("text-warning")
+      comment_downvote.removeClass("text-warning")
+
+      if (data.vote == 1)
+        comment_upvote.addClass("text-warning")
+      if (data.vote == -1)
+        comment_downvote.addClass("text-warning")
+      return
   })
