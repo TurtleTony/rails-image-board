@@ -37,7 +37,7 @@ class PostsController < AuthenticationController
 
   def add_tag
     @post = Post.find(params[:id])
-    @post.tag_list.add(params[:tag_list][:tag_list])
+    @post.tag_list.add(params[:tag_list][:tag])
     @post.save
     redirect_to :action => :show, :id => @post.id
   end

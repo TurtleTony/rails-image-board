@@ -7,7 +7,7 @@
   <% if user_signed_in? %>
     <li class="list-inline-item">
       <%= form_for :tag_list, url: {controller: "posts", action: "add_tag"}, method: :post do |f| %>
-        <%= f.text_field :tag_list, class: "bg-gray text-primary", placeholder: "Add tag" %>
+        <%= f.text_field :tag, class: "bg-gray text-primary", placeholder: "Add tag" %>
       <% end %>
     </li>
   <% end %>
