@@ -16,14 +16,14 @@
     <% if user_signed_in? %>
       <% has_voted = Vote.voted_on_by(@post, current_user.id) %>
       <div>
-        <a href="#" onclick="post_vote(1, <%= @post.id %>)" class="upvote">
+        <span onclick="post_vote(1, <%= @post.id %>)" class="pointer text-primary">
           <%= icon('fas', 'caret-square-up', class: ("text-warning" if has_voted == 1), id: "post_upvote") %>
-        </a>
+        </span>
       </div>
       <div>
-        <a href="#" onclick="post_vote(-1, <%= @post.id %>)" class="upvote">
+        <span onclick="post_vote(-1, <%= @post.id %>)" class="pointer text-primary">
           <%= icon('fas', 'caret-square-down', class: ("text-warning" if has_voted == -1), id: "post_downvote") %>
-        </a>
+        </span>
       </div>
     <% end %>
     <span class="position-absolute" style="top: .5em; left: 1.5em; right: 0; bottom: 0">
