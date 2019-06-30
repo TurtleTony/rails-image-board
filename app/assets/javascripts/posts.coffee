@@ -18,8 +18,8 @@ $(document).on("keydown", (e) ->
       when 39, 68 then navigatePost('/prev') # Right
       when 37, 65 then navigatePost('/next') # Left
       # Vote system not using arrow keys because they are already used for navigation
-      when 87 then vote(true, post_id) # Up
-      when 83 then vote(false, post_id) # Down
+      when 87 then post_vote(1, post_id) # Up
+      when 83 then post_vote(-1, post_id) # Down
 )
 
 navigatePost = (path) ->
