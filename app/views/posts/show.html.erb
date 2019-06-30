@@ -1,22 +1,53 @@
-<% @title="Post" %>
-<%= javascript_include_tag "post.js" %>
+<% @title = "Post" %>
+<%= csrf_meta_tag %>
 
+<%= javascript_tag do %>
+  post_id = <%= @post.id %>
+<% end %>
 <div class="text-center position-relative">
   <%= image_tag @post.resource, class: "img-fluid" %>
-  <%= link_to(@post.resource, class: "position-absolute enhance-link p-3", target: "_blank") do icon('fas', 'search-plus', class: "fa-2x") end %>
+  <%= link_to(@post.resource, class: "position-absolute enhance-link p-3", target: "_blank") do
+    icon('fas', 'search-plus', class: "fa-2x")
+  end %>
 </div>
-<h2><%= link_to(upvote_path(@post.id), class: "upvote", id: "upvote"+@post.id.to_s, method: :put, remote: true) do %>⬆<% end %></h2>
-<h2><%= content_tag(:div, content_tag(:div, @post.calculate_upvotes, id: "votes"+@post.id.to_s ), id: "vote") %></h2>
-<h2><%= link_to(downvote_path(@post.id), class: "downvote", id: "downvote"+@post.id.to_s, method: :put, remote: true) do %>⬇<% end %></h2>
-<span class="text-light">Posted <%= render 'shared/timestamp', timestamp: @post.created_at %> by <%= render 'users/user_link', user: @post.user %></span>
-<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} if user_signed_in? if @deletable %>
-<%= render 'shared/tag_list', id: "tags", values: @post.tags %>
+
+<div class="row">
+  <div class="col-3" style="font-size: 2.5rem; line-height: 1.2">
+    <% if user_signed_in? %>
+      <% has_voted = Vote.voted_on_by(@post, current_user.id) %>
+      <div>
+        <span onclick="post_vote(1, <%= @post.id %>)" class="pointer text-primary">
+          <%= icon('fas', 'caret-square-up', class: ("text-warning" if has_voted == 1), id: "post_upvote") %>
+        </span>
+      </div>
+      <div>
+        <span onclick="post_vote(-1, <%= @post.id %>)" class="pointer text-primary">
+          <%= icon('fas', 'caret-square-down', class: ("text-warning" if has_voted == -1), id: "post_downvote") %>
+        </span>
+      </div>
+    <% end %>
+    <span class="position-absolute" style="top: .5em; left: 1.5em; right: 0; bottom: 0">
+      <%= content_tag(:div, content_tag(:div, @post.calculate_upvotes, id: "post_votes"), id: "vote") %>
+    </span>
+  </div>
+  <div class="col">
+    <span class="text-light">Posted to
+      <span class="badge badge-danger"><%= @post.filter %></span>
+      <%= render 'shared/timestamp', timestamp: @post.created_at %>
+      by <%= render 'users/user_link', user: @post.user %>
+      </span>
+    <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} if user_signed_in? if @deletable %>
+    <%= render 'shared/tag_list', id: "tags", values: @post.tags %>
+  </div>
+</div>
+
 
 <div class="mt-3 text-light">
   <h4><%= @post.comments.size %> Comments</h4>
-
-  <%= render 'comments/new', post_id: @post.id %>
+  <% if user_signed_in? %>
+    <%= render 'comments/new', post_id: @post.id %>
+  <% end %>
   <div class="mt-3">
-  <%= render 'comments/index', comments: @post.comments.where(comment_id: nil) %>
+    <%= render 'comments/index', comments: @post.comments.where(comment_id: nil), post: @post %>
   </div>
 </div>

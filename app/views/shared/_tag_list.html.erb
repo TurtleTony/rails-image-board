@@ -1,7 +1,14 @@
 <ul id="<%= id %>" class="list-inline">
   <% values.each do |value| %>
     <li class="list-inline-item">
-        <span class="badge badge-primary" style="line-height: 160%;"><%= value %></span>
+      <span class="badge badge-primary" style="line-height: 160%;"><%= value %></span>
+    </li>
+  <% end %>
+  <% if user_signed_in? %>
+    <li class="list-inline-item">
+      <%= form_for :tag_list, url: {controller: "posts", action: "add_tag"}, method: :post do |f| %>
+        <%= f.text_field :tag, class: "bg-gray text-primary", placeholder: "Add tag" %>
+      <% end %>
     </li>
   <% end %>
 </ul>

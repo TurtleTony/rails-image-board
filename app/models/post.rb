@@ -1,30 +1,24 @@
 class Post < ApplicationRecord
+  include VoteableConcern
   belongs_to :user
   has_one_attached :resource
   has_many :comments, dependent: :delete_all
-  has_many :upvotes
-  has_many :downvotes
   acts_as_taggable
+  enum filter: [ :sfw, :nsfw, :nsfl ]
 
   validate :resource_format
-  validates :tag_list, presence: true
+  validates :filter, presence: true
 
-  def calculate_upvotes
-    @total_votes = 0
+  def next(filter)
+    Post.filtered(filter).where("posts.id > ?", self.id).order("posts.id ASC").limit(1)[0]
+  end
 
-    Upvote.all.each do |vote|
-      if vote.post_id == self.id
-        @total_votes += 1
-      end
-    end
+  def prev(filter)
+    Post.filtered(filter).where("posts.id < ?", self.id).order("posts.id DESC").limit(1)[0]
+  end
 
-    Downvote.all.each do |vote|
-      if vote.post_id == self.id
-        @total_votes -= 1
-      end
-    end
-
-    @total_votes
+  def self.filtered(filter)
+    Post.where("posts.filter <= ?", filters[filter])
   end
 
   private

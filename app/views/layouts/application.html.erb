@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ruby ImageBoard</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Ruby ImageBoard</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body class="bg-gray">
-  <div class="container">
+<body class="bg-gray">
+<div class="container">
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-danger">
-    <a class="navbar-brand text-light" href="/">RIB<%= " - " + @title if defined? @title%></a>
+  <nav class="navbar navbar-expand-md navbar-dark bg-danger text-light">
+    <a class="navbar-brand" href="/"><%= icon('fas', 'gem') %> <%= icon('fas', 'image') %> <%= icon('fas', 'chess-board') %><%= " - " + @title if defined? @title %></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,26 +22,36 @@
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Upload", new_post_path, class: "text-light" %>
+            <%= link_to "Upload", new_post_path, class: "nav-link text-light" %>
           </li>
-          <% end %>
+        <% end %>
+        <%= link_to "Filters:", faq_path(anchor: 'filters'), class: "nav-link text-light" %>
+        <% post_filters.each do |filter| %>
+          <li class="nav-item">
+            <%= link_to filter[0].capitalize, posts_filter_path(:filter => filter[0]), method: :post, class: "nav-link " + (@filter == filter[0] ? "text-light" : "text-gray") %>
+          </li>
+        <% end %>
       </ul>
       <ul class="navbar-nav">
-      <% if user_signed_in? %>
-          <li class="nav-item text-light">
-            <%= render "users/user_link", user: current_user %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-light" %>
-          </li>
-      <% else %>
+        <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Log in",  new_user_session_path, class: "text-light" %>
+            <%= render "users/user_nav_link", user: current_user %>
           </li>
-      <% end %>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-light" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Log in", new_user_session_path, class: "nav-link text-light" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </nav>
   <%= render 'shared/flash' %>
-  <%= yield %>
+  <div id="content" class="text-light">
+    <%= yield %>
   </div>
-  </body>
+</div>
+</body>
 </html>
