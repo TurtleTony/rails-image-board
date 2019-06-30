@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  concern :voteable do
-    resources :votes, only: [ :create, :update, :destroy ]
-  end
   resources :comments
   root to: 'posts#index'
-  resources :posts, concerns: :voteable
+  resources :posts
   devise_for :users
   post 'posts/:id/add_tag' => 'posts#add_tag'
   get 'posts/:id/prev' => 'posts#prev'
@@ -12,5 +9,6 @@ Rails.application.routes.draw do
   post 'posts/filter' => 'posts#filter'
   get 'users/:id' => 'users#show', as: 'userid'
   get 'faq' => 'faq#index'
+  post 'posts/:id/votes' => 'votes#post_vote', as: 'post_vote'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

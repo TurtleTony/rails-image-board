@@ -9,10 +9,6 @@ class Post < ApplicationRecord
   validate :resource_format
   validates :filter, presence: true
 
-  def calculate_upvotes
-    self.votes.sum :value
-  end
-
   def next(filter)
     Post.filtered(filter).where("posts.id > ?", self.id).order("posts.id ASC").limit(1)[0]
   end
