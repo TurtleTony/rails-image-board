@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get 'users/:id' => 'users#show', as: 'userid'
   get 'faq' => 'faq#index'
   post 'posts/:id/votes' => 'votes#post_vote', as: 'post_vote'
+  post 'comments/:id/votes' => 'votes#comment_vote', as: 'comment_vote'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

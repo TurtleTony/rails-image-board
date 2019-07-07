@@ -10,11 +10,11 @@
 - [x] Post Details Page (adjust when owned post) (Done except new feature (comments) Tristan)
 - [x] Post Comment Section (Basically done: Tristan) (Will be adjusted with coming vote-system)
 - [x] User Profile Page (Basics are done: Vincent)
-- [ ] Up/Down-vote System (WIP: Vincent)
+- [x] Up/Down-vote System (Done: Vincent)
 - [x] Adjust picture size to fit (Done thanks to bootstrap: Tristan)
 - [ ] Post-Processing of images? (Not sure if we need this)
 - [ ] Video-Support (not sure how big of a task but would be nice to have)
-- [ ] Postfilters (e.g. public, visible for registered user, visible for admins..) (WIP: Tristan) (maybe force a visibility tag?)
+- [x] Postfilters (e.g. public, visible for registered user, visible for admins..) (Done: Tristan)
 - [x] Tagsystem (Done: Tristan) (Maybe we make tags voteable?)
 - [ ] Searching for tags etc.
 - [ ] Badges / Achievements / Ranks for users (Combine ranks with authorization system (pundit))

@@ -13,4 +13,9 @@ class VotesController < AuthenticationController
     @post = Post.find(params[:post_id])
     create(@post)
   end
+
+  def comment_vote
+    @comment = Comment.find(params[:comment_id])
+    create(@comment)
+  end
 end

@@ -8,7 +8,7 @@ class Vote < ApplicationRecord
     unless value == previous_vote
       Vote.new(user: voter, voteable: voteable, value: value).save
     end
-    new_vote = Vote.voted_on_by(voteable.id, voter.id)
+    new_vote = Vote.voted_on_by(voteable, voter.id)
     {votes: voteable.calculate_upvotes, voteable_id: voteable.id, voteable_type: voteable.class.to_s, vote: new_vote}
   end
 
