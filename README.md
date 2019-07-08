@@ -32,6 +32,16 @@ If a PR changes the version the merge commit shall be tagged accordingly.
 
 (Tagging and versioning shall be automated using CI if/when possible, which is why - for the moment - no versioning is yet in place)
 
+### Gitignore / Gitkeep
+
+If any folder/directory structure shall be persisted to git without committing any files (e.g. storage folder) a `.keep` file
+shall be placed in that directory. If a branch of multiple folders/directories shall be persisted please only add the `.keep`
+file to the deepest possible parent directory
+
+If any folder/file shall not be persisted to git please add a `.gitignore` file to the parent directory so that every
+gitignore may only influence the folder it is located in. Auto-generated `.gitignore` files (e.g. the the rails one)
+shall be an exception to this rule.
+
 ## Disclaimer
 Since the project was risen from a students homework a lot of cleaning up is necessary before even considering production/hosting.
 
