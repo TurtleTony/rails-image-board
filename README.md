@@ -20,6 +20,7 @@ A branch shall be named with the related Issue and have any further information 
 #12_mockup
 ...
 ```
+PR's shall be names like the branch.  
 If you do not want a branch merged try to avoid creating a Pull Request.
 If you need to create a Pull Request please add a WIP (Work in Progress) label to the PR. 
 
