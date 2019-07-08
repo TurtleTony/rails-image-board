@@ -42,6 +42,19 @@ If any folder/file shall not be persisted to git please add a `.gitignore` file 
 gitignore may only influence the folder it is located in. Auto-generated `.gitignore` files (e.g. the the rails one)
 shall be an exception to this rule.
 
+### Commit Messages
+Commit message MUST follow [The seven rules of a great Git commit message](https://chris.beams.io/posts/git-commit/)
+
+    1. Separate subject from body with a blank line
+    2. Limit the subject line to 50 characters
+    3. Capitalize the subject line
+    4. Do not end the subject line with a period
+    5. Use the imperative mood in the subject line
+    6. Wrap the body at 72 characters
+    7. Use the body to explain what and why vs. how
+    
+If your commit messages do not follow these rules (you MAY do exceptions on line length) your PR will not be approved.
+
 ## Disclaimer
 Since the project was risen from a students homework a lot of cleaning up is necessary before even considering production/hosting.
 
