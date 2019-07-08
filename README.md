@@ -8,12 +8,12 @@ The goal is to provide an open source ImageBoard platform that will eventually b
 If you want to contribute to this project feel free to either contact the maintainer(s) or just submit a PR directly.
 
 ### Submitting code
-When submitting code please make sure to have ssh and gpg setup properly, unsigned/unverified commits will be rejected  
-Furthermore please try to keep sane formatting
+When submitting code please make sure to have ssh and gpg setup properly, unsigned/unverified commits will be rejected.  
+Furthermore please try to keep sane formatting.
 
 ### Branching
-When working on a branch please obey the naming conventions for branches and PR's  
-A branch shall be named with the related Issue and have any further information be appended briefly in snake_case  
+When working on a branch please obey the naming conventions for branches and PR's.  
+A branch shall be named with the related Issue and have any further information be appended briefly in snake_case.  
 ```
 #12
 #12_part1
@@ -21,7 +21,7 @@ A branch shall be named with the related Issue and have any further information 
 ...
 ```
 If you do not want a branch merged try to avoid creating a Pull Request.
- If you need to create a Pull Request please add a WIP (Work in Progress) label to the PR 
+If you need to create a Pull Request please add a WIP (Work in Progress) label to the PR. 
 
 You shall of course never push (or worse: force-push) onto the master branch, git will reject any attempted push immediately.
 
