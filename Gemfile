@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.9.1'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.9.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -69,9 +69,6 @@ gem 'pundit', '~>2.0.1'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.8.1'
-
-# Image processing
-gem 'mini_magick'
 
 # JavaScript
 gem 'js-routes'
