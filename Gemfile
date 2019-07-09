@@ -67,11 +67,11 @@ gem 'pundit', '~>2.0.1'
 
 # View
 gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
+gem 'jquery-rails', '~>4.3.5'
 gem 'font-awesome-sass', '~> 5.8.1'
 
 # JavaScript
-gem 'js-routes'
+gem 'js-routes', '~>1.4.7'
 
 # Tagging
 gem 'acts-as-taggable-on', '~> 6.0'
