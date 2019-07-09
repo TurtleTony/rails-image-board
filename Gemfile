@@ -62,16 +62,16 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Usermanagement
-gem 'devise', '~>4.6.2'
-gem 'pundit', '~>2.0.1'
+gem 'devise', '~> 4.6.2'
+gem 'pundit', '~> 2.0.1'
 
 # View
 gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails', '~>4.3.5'
+gem 'jquery-rails', '~> 4.3.5'
 gem 'font-awesome-sass', '~> 5.8.1'
 
 # JavaScript
-gem 'js-routes', '~>1.4.7'
+gem 'js-routes', '~> 1.4.7'
 
 # Tagging
 gem 'acts-as-taggable-on', '~> 6.0'
