@@ -3,10 +3,10 @@
     <% comments.each do |comment| %>
       <li>
         <% if user_signed_in? %>
-        <span onclick="comment_vote(1, <%= comment.id %>)" class="pointer text-primary">
+        <span onclick="comment_vote(true, <%= comment.id %>)" class="pointer text-primary">
           <%= icon('fas', 'caret-square-up', class: ("text-warning" if current_user.voted_up_on? comment), id: "comment_#{comment.id}_upvote") %>
         </span>
-        <span onclick="comment_vote(-1, <%= comment.id %>)" class="pointer text-primary">
+        <span onclick="comment_vote(false, <%= comment.id %>)" class="pointer text-primary">
           <%= icon('fas', 'caret-square-down', class: ("text-warning" if current_user.voted_down_on? comment), id: "comment_#{comment.id}_downvote") %>
         </span>
         <% end %>

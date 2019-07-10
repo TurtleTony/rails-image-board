@@ -26,9 +26,9 @@
       post_upvote.removeClass("text-warning")
       post_downvote.removeClass("text-warning")
 
-      if (data.vote == 1)
+      if (data.vote == true)
         post_upvote.addClass("text-warning")
-      if (data.vote == -1)
+      if (data.vote == false)
         post_downvote.addClass("text-warning")
       return
   })
@@ -55,9 +55,9 @@
       comment_upvote.removeClass("text-warning")
       comment_downvote.removeClass("text-warning")
 
-      if (data.vote == 1)
+      if (data.vote == true)
         comment_upvote.addClass("text-warning")
-      if (data.vote == -1)
+      if (data.vote == false)
         comment_downvote.addClass("text-warning")
       return
   })
