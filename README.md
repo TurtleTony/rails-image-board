@@ -23,7 +23,8 @@ A branch shall be named with the related Issue and have any further information 
 PR's shall be named like the branch.  
 If you do not want a branch merged try to avoid creating a Pull Request.
 If you need to create a Pull Request please prepend a [WIP (Work in Progress) label](https://github.com/marketplace/wip)
-to the PR name. 
+to the PR name.  
+Furthermore please delete branches after merging to prevent lingering zombie branches.
 
 You shall of course never push (or worse: force-push) onto the master branch, git will reject any attempted push immediately.
 
