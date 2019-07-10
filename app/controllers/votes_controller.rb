@@ -3,7 +3,6 @@ class VotesController < AuthenticationController
     vote = ActiveRecord::Type::Boolean.new.cast(params[:vote])
     if (current_user.voted_as_when_voted_for votable) == vote
       votable.unvote_by current_user
-      vote = 0
     else
       votable.vote_by :voter => current_user, :vote => vote
     end
