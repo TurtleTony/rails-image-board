@@ -1,12 +1,12 @@
 class VotesController < AuthenticationController
-  def create voteable
-    vote = params[:vote].to_i
-    if vote > 0
-      vote = 1
+  def create(votable)
+    vote = ActiveRecord::Type::Boolean.new.cast(params[:vote])
+    if (current_user.voted_as_when_voted_for votable) == vote
+      votable.unvote_by current_user
     else
-      vote = -1
+      votable.vote_by :voter => current_user, :vote => vote
     end
-    render json: Vote.ajax_create(voteable, current_user, vote)
+    render json: {votes: votable.weighted_score, voteable_id: votable.id, voteable_type: votable.class.to_s, vote: (current_user.voted_as_when_voted_for votable)}
   end
 
   def post_vote

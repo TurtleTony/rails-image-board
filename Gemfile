@@ -75,3 +75,6 @@ gem 'js-routes', '~> 1.4.7'
 
 # Tagging
 gem 'acts-as-taggable-on', '~> 6.0'
+
+# Voting
+gem 'acts_as_votable', '~> 0.12.0'
