@@ -6,5 +6,5 @@ class User < ApplicationRecord
          :lockable, :timeoutable, :trackable
   has_many :posts
   has_many :comments
-  has_many :votes
+  acts_as_voter
 end

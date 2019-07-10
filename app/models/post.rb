@@ -1,9 +1,9 @@
 class Post < ApplicationRecord
-  include VoteableConcern
   belongs_to :user
   has_one_attached :resource
   has_many :comments, dependent: :delete_all
   acts_as_taggable
+  acts_as_votable
   enum filter: [ :sfw, :nsfw, :nsfl ]
 
   validate :resource_format

@@ -14,20 +14,19 @@
 <div class="row">
   <div class="col-3" style="font-size: 2.5rem; line-height: 1.2">
     <% if user_signed_in? %>
-      <% has_voted = Vote.voted_on_by(@post, current_user.id) %>
       <div>
         <span onclick="post_vote(1, <%= @post.id %>)" class="pointer text-primary">
-          <%= icon('fas', 'caret-square-up', class: ("text-warning" if has_voted == 1), id: "post_upvote") %>
+          <%= icon('fas', 'caret-square-up', class: ("text-warning" if current_user.voted_up_on? @post), id: "post_upvote") %>
         </span>
       </div>
       <div>
         <span onclick="post_vote(-1, <%= @post.id %>)" class="pointer text-primary">
-          <%= icon('fas', 'caret-square-down', class: ("text-warning" if has_voted == -1), id: "post_downvote") %>
+          <%= icon('fas', 'caret-square-down', class: ("text-warning" if current_user.voted_down_on? @post), id: "post_downvote") %>
         </span>
       </div>
     <% end %>
     <span class="position-absolute" style="top: .5em; left: 1.5em; right: 0; bottom: 0">
-      <%= content_tag(:div, content_tag(:div, @post.calculate_upvotes, id: "post_votes"), id: "vote") %>
+      <%= content_tag(:div, content_tag(:div, @post.weighted_score, id: "post_votes"), id: "vote") %>
     </span>
   </div>
   <div class="col">
