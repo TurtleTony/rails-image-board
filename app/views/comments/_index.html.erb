@@ -3,14 +3,10 @@
     <% comments.each do |comment| %>
       <li>
         <% if user_signed_in? %>
-        <span onclick="comment_vote(true, <%= comment.id %>)" class="pointer text-primary">
-          <%= icon('fas', 'caret-square-up', class: ("text-warning" if current_user.voted_up_on? comment), id: "comment_#{comment.id}_upvote") %>
-        </span>
-        <span onclick="comment_vote(false, <%= comment.id %>)" class="pointer text-primary">
-          <%= icon('fas', 'caret-square-down', class: ("text-warning" if current_user.voted_down_on? comment), id: "comment_#{comment.id}_downvote") %>
-        </span>
+          <%= render 'votes/upvote', votable: comment %>
+          <%= render 'votes/downvote', votable: comment %>
         <% end %>
-      <%= content_tag(:span, comment.weighted_score, id: "comment_#{comment.id}_votes") %>
+        <%= render 'votes/votes', votable: comment %>
         <p class="mb-0"><%= comment.message %></p>
         <span class="text-primary">
           <%= if comment.user_id == post.user_id
