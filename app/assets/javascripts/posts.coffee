@@ -19,9 +19,12 @@ $(document).on("keydown", (e) ->
       when 39, 68 then navigatePost('/prev') # Right
       when 37, 65 then navigatePost('/next') # Left
       # Vote system not using arrow keys because they are already used for navigation
-      when 87 then post_vote(1, post_id) # Up
-      when 83 then post_vote(-1, post_id) # Down
+      when 87 then votePost(post_id, true) # Up
+      when 83 then votePost(post_id, false) # Down
 )
+
+votePost = (id, vote) ->
+  $("#Post_" + id + "_" + (if vote then "upvote" else "downvote") + " > a:nth-child(1)")[0].click()
 
 navigatePost = (path) ->
   if (post_id? && Routes.post_path(post_id) == window.location.pathname)
