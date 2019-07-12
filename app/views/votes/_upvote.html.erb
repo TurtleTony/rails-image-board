@@ -1,0 +1,10 @@
+<span id="<%= votable.class.name.demodulize %>_<%= votable.id %>_upvote">
+  <%= link_to icon('fas', 'caret-square-up',
+                   class: ("text-warning" if current_user.voted_up_on? votable)),
+              url_for(votable) + "/vote?vote=true",
+              # vote_path(type: votable.class.name.demodulize, id: votable.id, vote: true),
+              remote: true,
+              method: :post,
+              vote: true
+  %>
+</span>

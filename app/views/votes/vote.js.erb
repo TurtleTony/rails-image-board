@@ -1,0 +1,4 @@
+<% prefix = "#{@votable.class.name.demodulize}_#{@votable.id}_" %>
+$("#<%= prefix %>upvote").replaceWith("<%= j render 'votes/upvote', votable: @votable %>")
+$("#<%= prefix %>downvote").replaceWith("<%= j render 'votes/downvote', votable: @votable %>")
+$("#<%= prefix %>votes").replaceWith("<%= j render 'votes/votes', votable: @votable %>")

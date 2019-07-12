@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'posts/filter' => 'posts#filter'
   get 'users/:id' => 'users#show', as: 'userid'
   get 'faq' => 'faq#index'
-  post 'posts/:id/votes' => 'votes#post_vote', as: 'post_vote'
-  post 'comments/:id/votes' => 'votes#comment_vote', as: 'comment_vote'
+  post 'posts/:id/vote' => 'votes#post_vote', as: 'vote_post'
+  post 'comments/:id/vote' => 'votes#comment_vote'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
