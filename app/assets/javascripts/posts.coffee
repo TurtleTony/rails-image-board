@@ -12,8 +12,12 @@
     $(comment_id).show()
   $(comment_id + " > p > textarea").focus()
 
+pressedKeys = []
+
 $(document).on("keydown", (e) ->
   e = e || window.event
+  return if (pressedKeys[e])
+  pressedKeys[e] = true;
   if (!$("input").add("textarea").is(":focus")) # Don't do global hotkeys when in input or textarea
     switch e.which
       when 39, 68 then navigatePost('/prev') # Right
@@ -21,6 +25,8 @@ $(document).on("keydown", (e) ->
       # Vote system not using arrow keys because they are already used for navigation
       when 87 then votePost(post_id, true) # Up
       when 83 then votePost(post_id, false) # Down
+).on("keyup", (e) ->
+  pressedKeys[e] = false;
 )
 
 votePost = (id, vote) ->
