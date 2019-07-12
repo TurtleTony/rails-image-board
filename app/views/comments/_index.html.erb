@@ -17,7 +17,7 @@
           <%= render 'shared/timestamp', timestamp: comment.created_at %>
         </span>
         <% if user_signed_in? %>
-          <span class="pointer" onclick="setCommentForm(<%= comment.id %>)">Reply</span>
+          <span class="pointer" onclick="displayCommentForm(<%= comment.id %>)">Reply</span>
           <span><%= render 'comments/new', post_id: comment.post.id, comment_id: comment.id %></span>
         <% end %>
       </li>

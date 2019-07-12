@@ -2,7 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-@setCommentForm = (id, hide = false) ->
+# Show/hide a reply form and hide all others
+@displayCommentForm = (id, hide = false) ->
   comment_id = '#comment_message' + id
   $(".comment-reply:not(#{comment_id})").hide()
   if (hide)
