@@ -1,5 +1,7 @@
 # Rails ImageBoard - RIB
 
+
+#thttps://github.com/
 ## Vision
 The RIB started out as a project for a uni course to learn programming Ruby on Rails.  
 The goal is to provide an open source ImageBoard platform that will eventually be self-hosted.  
